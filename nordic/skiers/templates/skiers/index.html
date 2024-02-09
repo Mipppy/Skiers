@@ -1,0 +1,12 @@
+<ul>
+    {% for link in links %}
+        <li>{{link}}</li>
+    {% endfor %}
+
+    {% for data in pdf %}
+        {%for data2 in data%}
+            <P>{{data2}}</P>
+        {% endfor %}
+    <br><br><br><br>
+    {% endfor %}
+</ul>

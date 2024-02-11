@@ -16,6 +16,15 @@
     <thead>
         Recent Races
     </thead>
-    
+    {% for result in results %}
+        <tr>
+            <td>
+                {{result.racer.lastname}} {{result.racer.firstname}}
+            </td>
+            <td>
+                {{result.time}}
+            </td>
+        </tr>
+    {% endfor %}
   </table>
 {% endblock %}

@@ -6,7 +6,7 @@ from django.urls import reverse
 
 def index(request):
     results = Result.objects.all()
-    print(results)
+    
     return render(request, "skiers/index.html", {"results": results})
 
 def rescan(request):

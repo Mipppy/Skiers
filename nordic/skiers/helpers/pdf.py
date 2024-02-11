@@ -67,8 +67,7 @@ def parseRacerData(data):
 def addRaceToDatabase(race):
     racer = racerExistsAlready(race)
     print(f"racer {racer} |time {race[2]} | bib={race[0]} | place={race[1]} | score={race[3]}")
-    racer_result = Result(racer=racer[0], time=race[2], bib=int(race[0]), place=int(race[1]), score=float(race[3]))
-    racer_result.save()
+    doesResultExistYet(race, racer)
     
     
 def racerExistsAlready(race):
@@ -90,5 +89,14 @@ def racerExistsAlready(race):
         return new_racer
     else:
         return racerQuery
+def doesResultExistYet(race, racer):
+    objects = Result.objects.filter(racer=racer[0], time=race[2], bib=int(race[0]), place=int(race[1]), score=float(race[3]))
+    if not objects:
+        racer_result = Result(racer=racer[0], time=race[2], bib=int(race[0]), place=int(race[1]), score=float(race[3]))
+        racer_result.save()
+        return racer_result
+    else:
+        return None
+
 # Racer.objects.all().delete()
 # Result.objects.all().delete()

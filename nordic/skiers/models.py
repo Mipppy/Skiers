@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Sites(models.Model):
     site = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     
 class Racer(models.Model):
     firstname = models.CharField(max_length=100)

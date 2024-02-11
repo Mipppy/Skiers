@@ -28,7 +28,9 @@ def mainPDFFunc():
     soup = BeautifulSoup(response.content, 'html.parser')
     segments = soup.find_all('p', class_="font_8")
     goodsegs = []
+    goodtitle = []
     for seg in segments:
+        backseg = seg.text
         seg = str(seg)
         if seg.find("Nordic") != -1 or seg.find("JNQ") != -1:
             minsoup = BeautifulSoup(seg, 'html.parser')
@@ -36,8 +38,10 @@ def mainPDFFunc():
             for seg2 in minseg:
                 if "underdogtiming.com/_files" in str(seg2['href']) and str(seg2).find("Team") == -1 and str(seg2).find("Start") == -1:
                     goodsegs.append(seg2['href'])
-    for segment in goodsegs:
-        site = Sites(site=segment)
+                    result = backseg.split("\xa0")
+                    goodtitle.append(result[0])
+    for index, segment in enumerate(goodsegs):
+        site = Sites(site=goodsegs[index],title=goodtitle[index])
         site.save()
     return goodsegs
 
@@ -66,7 +70,6 @@ def parseRacerData(data):
                     continue
 def addRaceToDatabase(race):
     racer = racerExistsAlready(race)
-    print(f"racer {racer} |time {race[2]} | bib={race[0]} | place={race[1]} | score={race[3]}")
     doesResultExistYet(race, racer)
     
     
@@ -100,3 +103,4 @@ def doesResultExistYet(race, racer):
 
 # Racer.objects.all().delete()
 # Result.objects.all().delete()
+# Sites.objects.all().delete()

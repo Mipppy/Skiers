@@ -36,6 +36,9 @@ def mainPDFFunc():
             for seg2 in minseg:
                 if "underdogtiming.com/_files" in str(seg2['href']) and str(seg2).find("Team") == -1 and str(seg2).find("Start") == -1:
                     goodsegs.append(seg2['href'])
+    for segment in goodsegs:
+        site = Sites(site=segment)
+        site.save()
     return goodsegs
 
 def PDFreadline(text):
@@ -63,7 +66,9 @@ def parseRacerData(data):
                     continue
 def addRaceToDatabase(race):
     racer = racerExistsAlready(race)
-    print(racer[0].firstname + racer[0].lastname)
+    print(f"racer {racer} |time {race[2]} | bib={race[0]} | place={race[1]} | score={race[3]}")
+    racer_result = Result(racer=racer[0], time=race[2], bib=int(race[0]), place=int(race[1]), score=float(race[3]))
+    racer_result.save()
     
     
 def racerExistsAlready(race):
@@ -85,3 +90,5 @@ def racerExistsAlready(race):
         return new_racer
     else:
         return racerQuery
+# Racer.objects.all().delete()
+# Result.objects.all().delete()

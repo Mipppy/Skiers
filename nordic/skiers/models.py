@@ -13,4 +13,4 @@ class Result(models.Model):
     time = models.CharField(max_length=100)
     bib = models.IntegerField()
     place = models.IntegerField()
-    racename = models.CharField(max_length=200)
+    score = models.FloatField()

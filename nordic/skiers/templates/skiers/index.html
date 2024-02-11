@@ -1,12 +1,21 @@
-<ul>
-    {% for link in links %}
-        <li>{{link}}</li>
-    {% endfor %}
+{% extends "skiers/layout.html" %}
 
-    {% for data in pdf %}
-        {%for data2 in data%}
-            <P>{{data2}}</P>
-        {% endfor %}
-    <br><br><br><br>
-    {% endfor %}
-</ul>
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="border border-dark p-4 bg-secondary text-center">
+          <h3 class="thanks-tully">This site provides information and analysis on NY Nordic races</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table>
+    <thead>
+        Recent Races
+    </thead>
+    
+  </table>
+{% endblock %}

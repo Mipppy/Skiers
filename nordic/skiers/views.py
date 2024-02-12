@@ -27,3 +27,5 @@ def racer(request, id):
     racer.lastname = racer.lastname.lower().capitalize()[:-1]
     return render(request, "skiers/racer.html", {"racer": racer, "results": results})
 
+def tracked_racers(request):
+    return render(request, "skiers/tracked_racers.html", {"racers": Racer.objects.all()})

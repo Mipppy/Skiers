@@ -1,0 +1,18 @@
+{% extends "skiers/layout.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<br>
+<div class="container mt-4 col-11">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="bg-light">
+                {% for racer in racers %}
+                    <p>{{racer.lastname}} {{racer.firstname}} of {{racer.team}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

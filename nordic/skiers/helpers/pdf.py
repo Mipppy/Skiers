@@ -41,8 +41,11 @@ def mainPDFFunc():
                     result = backseg.split("\xa0")
                     goodtitle.append(result[0])
     for index, segment in enumerate(goodsegs):
-        site = Sites(site=goodsegs[index],title=goodtitle[index])
-        site.save()
+        if Sites.objects.filter(site=goodsegs[index],title=goodtitle[index]):
+            None
+        else:
+            site = Sites(site=goodsegs[index],title=goodtitle[index])
+            site.save()
     return goodsegs
 
 def PDFreadline(text):
@@ -100,6 +103,9 @@ def doesResultExistYet(race, racer):
         return racer_result
     else:
         return None
+
+            
+
 
 # Racer.objects.all().delete()
 # Result.objects.all().delete()
